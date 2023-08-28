@@ -11,13 +11,37 @@ class CharList extends Component {
     err: false,
     disable: false,
     offset: 210,
+    focusId: null,
+  };
+
+  setFocusCard = id => {
+    this.setState({
+      focusId: id,
+    });
   };
 
   marvelServices = new MarvelServices();
 
   componentDidMount() {
     this.onRequest();
+    window.addEventListener("scroll", this.onScroll);
   }
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.onScroll);
+  }
+
+  onScroll = () => {
+    if (this.timerScroll) {
+      clearTimeout(this.timerScroll);
+    }
+
+    this.timerScroll = setTimeout(() => {
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+        this.onRequest(this.state.offset);
+      }
+    }, 1000);
+  };
 
   onRequest = offset => {
     this.onCharLoading();
@@ -47,13 +71,30 @@ class CharList extends Component {
     const { char, err, loading, offset } = this.state;
 
     const elem = char.map(item => {
-      let imgStyled = { objectFit: "cover" };
+      let focusLi = "char__item";
+      if (item.id === this.state.focusId) {
+        focusLi = "char__item char__item_selected";
+      }
+
+      let imgStyled;
       if (item.thumbnail == "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg") {
-        imgStyled = { objectFit: "contain" };
+        imgStyled = { objectFit: undefined };
+      } else {
+        imgStyled = { objectFit: "cover" };
       }
 
       return (
-        <li onClick={() => this.props.onGetId(item.id)} key={item.id} className="char__item">
+        <li
+          onClick={() => {
+            this.props.onGetId(item.id);
+            this.setFocusCard(item.id);
+          }}
+          key={item.id}
+          ref={this.getElementsCard}
+          tabIndex={0}
+          style={{ border: "1px solid " }}
+          className={focusLi}
+        >
           <img src={item.thumbnail} style={imgStyled} alt="abyss" />
           <div className="char__name">{item.name}</div>
         </li>
