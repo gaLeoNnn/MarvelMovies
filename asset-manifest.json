@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/MarvelMovies/static/css/main.12c03b7f.chunk.css",
+    "main.js": "/MarvelMovies/static/js/main.8aed66db.chunk.js",
+    "main.js.map": "/MarvelMovies/static/js/main.8aed66db.chunk.js.map",
+    "runtime-main.js": "/MarvelMovies/static/js/runtime-main.b9fcc569.js",
+    "runtime-main.js.map": "/MarvelMovies/static/js/runtime-main.b9fcc569.js.map",
+    "static/js/2.3312c1ba.chunk.js": "/MarvelMovies/static/js/2.3312c1ba.chunk.js",
+    "static/js/2.3312c1ba.chunk.js.map": "/MarvelMovies/static/js/2.3312c1ba.chunk.js.map",
+    "index.html": "/MarvelMovies/index.html",
+    "static/css/main.12c03b7f.chunk.css.map": "/MarvelMovies/static/css/main.12c03b7f.chunk.css.map",
+    "static/js/2.3312c1ba.chunk.js.LICENSE.txt": "/MarvelMovies/static/js/2.3312c1ba.chunk.js.LICENSE.txt",
+    "static/media/error.42292aa1.gif": "/MarvelMovies/static/media/error.42292aa1.gif",
+    "static/media/mjolnir.61f31e18.png": "/MarvelMovies/static/media/mjolnir.61f31e18.png",
+    "static/media/vision.067d4ae1.png": "/MarvelMovies/static/media/vision.067d4ae1.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b9fcc569.js",
+    "static/js/2.3312c1ba.chunk.js",
+    "static/css/main.12c03b7f.chunk.css",
+    "static/js/main.8aed66db.chunk.js"
+  ]
+}
