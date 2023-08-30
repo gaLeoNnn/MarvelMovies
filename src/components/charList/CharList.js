@@ -1,14 +1,13 @@
 import "./charList.scss";
-import MarvelServices from "../../services/MarvelServices";
+import useMarvelServices from "../../services/MarvelServices";
 import { useEffect, useState } from "react";
 import ErrorMessage from "../error/error";
 import Spinner from "../spinner/spinner";
 
 function CharList(props) {
   const [char, setChar] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [err, setErr] = useState(false);
   const [disable, setDisable] = useState(false);
+  const [newItemLoading, setNewItemLoading] = useState(false);
   const [offset, setOffset] = useState(210);
   const [focusId, setFocusId] = useState(null);
 
@@ -16,18 +15,16 @@ function CharList(props) {
     setFocusId(id);
   };
 
-  const marvelServices = new MarvelServices();
+  const { loading, error, getAllCharacters } = useMarvelServices();
 
   useEffect(() => {
-    onRequest();
+    onRequest(offset, true);
   }, []);
 
   useEffect(() => {
-    console.log("hi");
     let timerScroll;
     const onScroll = () => {
       if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-        console.log("timer");
         if (timerScroll) {
           clearTimeout(timerScroll);
         }
@@ -45,25 +42,21 @@ function CharList(props) {
     };
   }, [offset]);
 
-  const onRequest = offset => {
+  const onRequest = (offset, initial) => {
+    initial ? setNewItemLoading(false) : setNewItemLoading(true);
     onCharLoading();
-    marvelServices.getAllCharacters(offset).then(onCharsLoaded).catch(onError);
+    getAllCharacters(offset).then(res => onCharsLoaded(res));
   };
 
   const onCharLoading = () => {
     setDisable(true);
   };
 
-  const onCharsLoaded = newChars => {
-    setChar(char => [...char, ...newChars]);
-
-    setLoading(false);
+  const onCharsLoaded = res => {
+    setChar(char => [...char, ...res]);
     setDisable(false);
+    // setNewItemLoading(newItemLoading => false);
     setOffset(offset => offset + 9);
-  };
-
-  const onError = () => {
-    setErr(true);
   };
 
   const elem = char.map(item => {
@@ -96,16 +89,15 @@ function CharList(props) {
     );
   });
 
-  const errorMessage = err ? <ErrorMessage /> : null;
-  const loadingMessage = loading ? <Spinner /> : null;
-  const content = !err && !loading ? elem : null;
+  const errorMessage = error ? <ErrorMessage /> : null;
+  const loadingMessage = loading && !newItemLoading ? <Spinner /> : null;
 
   return (
     <div className="char__list">
       <ul className="char__grid">
         {errorMessage}
         {loadingMessage}
-        {content}
+        {elem}
       </ul>
       <button disabled={disable} onClick={() => onRequest(offset)} className="button button__main button__long">
         <div className="inner">load more</div>
