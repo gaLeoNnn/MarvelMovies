@@ -1,29 +1,25 @@
 import AppHeader from "../appHeader/AppHeader";
-import RandomChar from "../randomChar/RandomChar";
-import CharList from "../charList/CharList";
-import CharInfo from "../charInfo/CharInfo";
-import decoration from "../../resources/img/vision.png";
-import { useState } from "react";
+
+import { Route, Routes, BrowserRouter } from "react-router-dom";
+import MainPage from "../pages/MainPage";
+import ComicsPage from "../pages/ComicsPage";
+import Page404 from "../pages/Page404";
+import SingleComicPage from "../pages/SingleComicPage";
 
 function App() {
-  const [selectedId, setSelectedId] = useState(null);
-
-  const onGetId = id => {
-    setSelectedId(id);
-  };
-
   return (
-    <div className="app">
-      <AppHeader />
-      <main>
-        <RandomChar />
-        <div className="char__content">
-          <CharList onGetId={onGetId} />
-          <CharInfo selectedId={selectedId} />
-        </div>
-        <img className="bg-decoration" src={decoration} alt="vision" />
-      </main>
-    </div>
+    <BrowserRouter>
+      <div className="app">
+        <AppHeader />
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="comics" element={<ComicsPage />}>
+            <Route path=":comicId" element={<SingleComicPage />} />
+          </Route>
+          <Route path="/*" element={<Page404 />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 
