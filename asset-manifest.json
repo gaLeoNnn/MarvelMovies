@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/MarvelMovies/static/css/main.172e99d0.chunk.css",
-    "main.js": "/MarvelMovies/static/js/main.9ef8dae0.chunk.js",
-    "main.js.map": "/MarvelMovies/static/js/main.9ef8dae0.chunk.js.map",
+    "main.js": "/MarvelMovies/static/js/main.07e5ca35.chunk.js",
+    "main.js.map": "/MarvelMovies/static/js/main.07e5ca35.chunk.js.map",
     "runtime-main.js": "/MarvelMovies/static/js/runtime-main.849caf5f.js",
     "runtime-main.js.map": "/MarvelMovies/static/js/runtime-main.849caf5f.js.map",
     "static/js/2.47aff565.chunk.js": "/MarvelMovies/static/js/2.47aff565.chunk.js",
@@ -34,6 +34,6 @@
     "static/js/runtime-main.849caf5f.js",
     "static/js/2.47aff565.chunk.js",
     "static/css/main.172e99d0.chunk.css",
-    "static/js/main.9ef8dae0.chunk.js"
+    "static/js/main.07e5ca35.chunk.js"
   ]
 }
