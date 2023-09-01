@@ -5,6 +5,7 @@ import useMarvelServices from "../../services/MarvelServices";
 import Spinner from "../spinner/spinner";
 import ErrorMessage from "../error/error";
 import Skeleton from "../skeleton/Skeleton";
+import { Link } from "react-router-dom";
 
 function CharInfo(props) {
   const [char, setChar] = useState(null);
@@ -72,10 +73,11 @@ const View = ({ char }) => {
       <ul className="char__comics-list">
         {comics.length > 0 ? null : "There is no comics with this character"}
         {comics.map((item, index) => {
+          const itemId = item.resourceURI.substring(43);
           if (index <= 9) {
             return (
               <li key={index} className="char__comics-item">
-                {item.name}
+                <Link to={`/comics/${itemId}`}>{item.name} </Link>
               </li>
             );
           } else {

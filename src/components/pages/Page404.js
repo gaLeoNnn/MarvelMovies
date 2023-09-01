@@ -5,7 +5,6 @@ const Page404 = () => {
     <div>
       <ErrorMessage />
       <Link style={{ display: "block", textAlign: "center", fontWeight: "bold", fontSize: "24px" }} to="/">
-        {" "}
         Back to Main page
       </Link>
     </div>

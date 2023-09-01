@@ -18,7 +18,7 @@ const AppHeader = () => {
           </li>
           /
           <li>
-            <NavLink end to="/comics" style={({ isActive }) => ({ color: isActive ? "red" : null })}>
+            <NavLink to="/comics" style={({ isActive }) => ({ color: isActive ? "red" : null })}>
               Comics
             </NavLink>
           </li>

@@ -27,13 +27,13 @@ const ComicsList = () => {
 
   const elems = comics.map((item, i) => {
     return (
-      <Link key={i} to={item.id} className="comics__item">
-        <a href="#">
+      <li key={i} className="comics__item">
+        <Link to={`/comics/${item.id}`}>
           <img src={item.thumbnail} alt="ultimate war" className="comics__item-img" />
           <div className="comics__item-name">{item.title}</div>
           <div className="comics__item-price">{item.prices}</div>
-        </a>
-      </Link>
+        </Link>
+      </li>
     );
   });
 
