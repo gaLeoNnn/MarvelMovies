@@ -1,0 +1,18 @@
+.single-character {
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: 293px 550px auto;
+  column-gap: 50px;
+  align-items: start;
+  &__img {
+    width: 293px;
+    height: 293px;
+  }
+  &__text {
+    margin-top: 20px;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+}

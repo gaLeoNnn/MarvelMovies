@@ -1,4 +1,5 @@
 import AppHeader from "../appHeader/AppHeader";
+import SingleCharacterPage from "../pages/SingleCharacterPage";
 import Spinner from "../spinner/spinner";
 
 import { lazy, Suspense } from "react";
@@ -16,7 +17,8 @@ function App() {
         <AppHeader />
         <Suspense fallback={<Spinner />}>
           <Routes>
-            <Route path="/" element={<MainPage />} />
+            <Route path="/MarvelMovies" element={<MainPage />} />
+            <Route path="/MarvelMovies/:charId" element={<SingleCharacterPage />} />
             <Route path="/comics" element={<ComicsPage />} />
             <Route path="/comics/:comicId" element={<SingleComicPage />} />
             <Route path="/*" element={<Page404 />} />

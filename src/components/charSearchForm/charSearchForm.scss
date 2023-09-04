@@ -1,0 +1,58 @@
+.char {
+  border: 1px solid #000;
+  &__search {
+    &-form {
+      margin-top: 50px;
+      padding: 25px;
+      position: relative;
+      z-index: 5;
+      background: #fff;
+      box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.25);
+      flex-shrink: 0;
+    }
+    &-lable {
+      display: block;
+      color: #000;
+      font-family: Roboto Condensed;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+    }
+    &-wrapper {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+
+      input {
+        width: 250px;
+        height: 38px;
+        border: none;
+        background: #ffffff;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        font-size: 14px;
+        padding: 10px;
+        color: rgba(0, 0, 0, 0.5);
+        font-family: Roboto Condensed;
+        font-size: 14px;
+      }
+    }
+    &-result {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    &-name {
+      color: #03710e;
+      font-family: Roboto Condensed;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      &_not {
+        color: #9f0013;
+      }
+    }
+  }
+}

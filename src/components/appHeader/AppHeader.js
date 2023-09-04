@@ -12,7 +12,7 @@ const AppHeader = () => {
       <nav className="app__menu">
         <ul>
           <li>
-            <NavLink end to="/" style={({ isActive }) => ({ color: isActive ? "red" : null })}>
+            <NavLink end to="/MarvelMovies" style={({ isActive }) => ({ color: isActive ? "red" : null })}>
               Characters
             </NavLink>
           </li>

@@ -1,6 +1,7 @@
 import "./charList.scss";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 import useMarvelServices from "../../services/MarvelServices";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ErrorMessage from "../error/error";
 import Spinner from "../spinner/spinner";
 
@@ -10,6 +11,7 @@ function CharList(props) {
   const [newItemLoading, setNewItemLoading] = useState(false);
   const [offset, setOffset] = useState(210);
   const [focusId, setFocusId] = useState(null);
+  const myRef = useRef([]);
 
   const setFocusCard = id => {
     setFocusId(id);
@@ -55,11 +57,11 @@ function CharList(props) {
   const onCharsLoaded = res => {
     setChar(char => [...char, ...res]);
     setDisable(false);
-    // setNewItemLoading(newItemLoading => false);
+    setNewItemLoading(newItemLoading => true);
     setOffset(offset => offset + 9);
   };
 
-  const elem = char.map(item => {
+  const elem = char.map((item, i) => {
     let focusLi = "char__item";
     if (item.id === focusId) {
       focusLi = "char__item char__item_selected";
@@ -73,19 +75,22 @@ function CharList(props) {
     }
 
     return (
-      <li
-        onClick={() => {
-          props.onGetId(item.id);
-          setFocusCard(item.id);
-        }}
-        key={item.id}
-        tabIndex={0}
-        style={{ border: "1px solid " }}
-        className={focusLi}
-      >
-        <img src={item.thumbnail} style={imgStyled} alt="abyss" />
-        <div className="char__name">{item.name}</div>
-      </li>
+      <CSSTransition key={i} timeout={500} classNames={focusLi}>
+        <li
+          ref={el => (myRef.current[i] = el)}
+          onClick={() => {
+            props.onGetId(item.id);
+            setFocusCard(item.id);
+          }}
+          key={item.id}
+          tabIndex={0}
+          style={{ border: "1px solid " }}
+          className={focusLi}
+        >
+          <img src={item.thumbnail} style={imgStyled} alt="abyss" />
+          <div className="char__name">{item.name}</div>
+        </li>
+      </CSSTransition>
     );
   });
 
@@ -95,9 +100,9 @@ function CharList(props) {
   return (
     <div className="char__list">
       <ul className="char__grid">
+        <TransitionGroup component={null}>{elem}</TransitionGroup>
         {errorMessage}
         {loadingMessage}
-        {elem}
       </ul>
       <button disabled={disable} onClick={() => onRequest(offset)} className="button button__main button__long">
         <div className="inner">load more</div>
